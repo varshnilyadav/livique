@@ -239,6 +239,72 @@ document.addEventListener('DOMContentLoaded', () => {
     tag.style.animationDelay = `${i * 0.1}s`;
   });
 
+  // ========== DEVELOPER LOCK SCREEN LOGIC ==========
+  const lockScreen = document.getElementById('dev-lock-screen');
+  const lockForm = document.getElementById('lockForm');
+  const lockIdInput = document.getElementById('lock-id');
+  const lockPassInput = document.getElementById('lock-pass');
+  const lockRememberCheckbox = document.getElementById('lock-remember-me');
+  const lockErrorMsg = document.getElementById('lock-error');
+  const lockContainer = document.querySelector('.lock-container');
+
+  // Hardcoded developer credentials
+  const AUTH_ID = 'livique';
+  const AUTH_PASS = 'design2026';
+
+  if (lockForm) {
+    lockForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const enteredId = lockIdInput.value.trim();
+      const enteredPass = lockPassInput.value;
+
+      if (enteredId === AUTH_ID && enteredPass === AUTH_PASS) {
+        // Correct credentials
+        if (lockRememberCheckbox && lockRememberCheckbox.checked) {
+          localStorage.setItem('livique_authorized', 'true');
+        } else {
+          sessionStorage.setItem('livique_authorized', 'true');
+        }
+
+        // Change layout/state classes
+        document.documentElement.classList.remove('locked');
+        document.documentElement.classList.add('authorized');
+
+        // Premium fade-out transition
+        lockScreen.classList.add('fade-out');
+        setTimeout(() => {
+          lockScreen.style.display = 'none';
+        }, 600); // matches the transition-slow (0.6s)
+      } else {
+        // Incorrect credentials
+        lockErrorMsg.textContent = 'Invalid Access ID or Password. Please try again.';
+        lockContainer.classList.add('shake');
+        lockPassInput.value = '';
+        lockPassInput.focus();
+
+        // Clear shake class after animation completes
+        setTimeout(() => {
+          lockContainer.classList.remove('shake');
+        }, 400);
+      }
+    });
+  }
+
+  // Double check authorization on script load
+  const isAuthorized = localStorage.getItem('livique_authorized') === 'true' ||
+                       sessionStorage.getItem('livique_authorized') === 'true';
+
+  if (isAuthorized) {
+    document.documentElement.classList.remove('locked');
+    document.documentElement.classList.add('authorized');
+    if (lockScreen) {
+      lockScreen.style.display = 'none';
+    }
+  } else {
+    document.documentElement.classList.add('locked');
+    document.documentElement.classList.remove('authorized');
+  }
+
   // ========== PRELOADER / PAGE READY ==========
   document.body.classList.add('loaded');
 

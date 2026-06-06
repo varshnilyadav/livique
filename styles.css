@@ -1739,3 +1739,182 @@ section {
     page-break-inside: avoid;
   }
 }
+
+/* ========================================
+   DEVELOPER LOCK SCREEN
+   ======================================== */
+.dev-lock-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none; /* Controlled by html.locked / html.authorized class */
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at center, var(--color-olive-dark) 0%, var(--color-forest) 100%);
+  padding: var(--space-md);
+  color: var(--color-off-white);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+html.locked .dev-lock-screen {
+  display: flex;
+}
+
+html.authorized .dev-lock-screen {
+  display: none;
+}
+
+.dev-lock-screen.fade-out {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+}
+
+.lock-container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-xl) var(--space-lg);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+  box-shadow: var(--shadow-xl), 0 0 50px rgba(0,0,0,0.3);
+  animation: lockEntry 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.lock-logo {
+  width: 70px;
+  height: 70px;
+  background: rgba(212, 184, 150, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-md);
+  border: 1px solid rgba(212, 184, 150, 0.25);
+  transition: transform var(--transition-smooth);
+}
+
+.lock-logo:hover {
+  transform: scale(1.05) rotate(5deg);
+}
+
+.lock-logo svg {
+  width: 36px;
+  height: 36px;
+}
+
+.lock-container h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--color-off-white);
+  margin-bottom: var(--space-xs);
+  letter-spacing: 0.5px;
+}
+
+.lock-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.lock-input-group {
+  text-align: left;
+  margin-bottom: var(--space-md);
+}
+
+.lock-input-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-gold-light);
+  margin-bottom: 6px;
+}
+
+.lock-input-group input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+  color: var(--color-off-white);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.lock-input-group input:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-gold-light);
+  box-shadow: 0 0 10px rgba(212, 184, 150, 0.15);
+}
+
+.lock-remember {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  margin-bottom: var(--space-lg);
+  cursor: pointer;
+}
+
+.lock-remember input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  accent-color: var(--color-gold);
+  cursor: pointer;
+}
+
+.lock-remember label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-lock {
+  width: 100%;
+  justify-content: center;
+  padding: 16px;
+  font-size: 0.95rem;
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-forest) !important;
+}
+
+.btn-lock:hover {
+  background: var(--color-gold-light);
+  border-color: var(--color-gold-light);
+  color: var(--color-forest) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 184, 150, 0.25);
+}
+
+.lock-error-msg {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: var(--space-sm);
+  min-height: 20px;
+  font-weight: 500;
+}
+
+.lock-container.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@keyframes lockEntry {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}

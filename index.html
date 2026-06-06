@@ -13,8 +13,50 @@
   <meta name="theme-color" content="#2C3E28">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+  <script>
+    // Instantly check authorization status to prevent content flashing
+    if (localStorage.getItem('livique_authorized') === 'true' || sessionStorage.getItem('livique_authorized') === 'true') {
+      document.documentElement.classList.add('authorized');
+    } else {
+      document.documentElement.classList.add('locked');
+    }
+  </script>
 </head>
 <body>
+
+  <!-- ========== DEVELOPER LOCK SCREEN ========== -->
+  <div id="dev-lock-screen" class="dev-lock-screen">
+    <div class="lock-container">
+      <div class="lock-logo">
+        <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25 4L4 20V46H18V32H32V46H46V20L25 4Z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-gold-light)"/>
+          <path d="M18 32H32V46H18V32Z" stroke="currentColor" stroke-width="2" fill="none" style="color: var(--color-gold-light)" opacity="0.6"/>
+        </svg>
+      </div>
+      <h2>Private Access</h2>
+      <p class="lock-subtitle">This site is currently under development. Enter the credentials to preview the project.</p>
+      
+      <form id="lockForm">
+        <div class="lock-input-group">
+          <label for="lock-id">Access ID</label>
+          <input type="text" id="lock-id" placeholder="Enter Access ID" required autocomplete="username">
+        </div>
+        <div class="lock-input-group">
+          <label for="lock-pass">Password</label>
+          <input type="password" id="lock-pass" placeholder="Enter Password" required autocomplete="current-password">
+        </div>
+        <div class="lock-remember">
+          <input type="checkbox" id="lock-remember-me" checked>
+          <label for="lock-remember-me">Remember this device</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lock" id="lock-submit-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          Unlock Space
+        </button>
+        <p id="lock-error" class="lock-error-msg"></p>
+      </form>
+    </div>
+  </div>
 
   <!-- ========== NAVIGATION ========== -->
   <nav class="navbar" id="navbar">
