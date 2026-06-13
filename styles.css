@@ -1,6 +1,6 @@
 /* ========================================
-   LiviQue Space — Design System
-   Earthy Luxury Palette
+   Blue Interiors & Hardware — Design System
+   Premium Blue & Gold Palette
    ======================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -8,18 +8,18 @@
 /* ---- CSS Custom Properties ---- */
 :root {
   /* Brand Colors */
-  --color-cream:        #F5F0E8;
-  --color-warm-beige:   #E8DDD0;
-  --color-sand:         #D4C5B0;
-  --color-olive:        #5B6B4A;
-  --color-olive-dark:   #3E4A34;
-  --color-forest:       #2C3E28;
-  --color-charcoal:     #2E2E2E;
-  --color-warm-gray:    #6B6560;
-  --color-off-white:    #FAFAF7;
-  --color-gold:         #B8956A;
-  --color-gold-light:   #D4B896;
-  --color-accent:       #8B7355;
+  --color-cream:        #F4F6F9; /* Very light ice blue-gray background */
+  --color-warm-beige:   #E2E8F0; /* Light slate gray-blue border/accent */
+  --color-sand:         #94A3B8; /* Cool steel gray */
+  --color-olive:        #0F4C81; /* Classic Navy / Royal Blue primary */
+  --color-olive-dark:   #0B2545; /* Deep dark navy brand color */
+  --color-forest:       #081F3E; /* Ultra deep midnight navy */
+  --color-charcoal:     #1E293B; /* Cool dark slate */
+  --color-warm-gray:    #64748B; /* Soft slate gray */
+  --color-off-white:    #FAFAFB; /* Crisp off-white */
+  --color-gold:         #D4AF37; /* Metallic premium gold */
+  --color-gold-light:   #E5D5C0; /* Pale gold highlight */
+  --color-accent:       #1D4ED8; /* Sapphire Blue accent */
 
   /* Typography */
   --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
@@ -50,7 +50,7 @@
   --shadow-md:   0 4px 20px rgba(46,46,46,0.08);
   --shadow-lg:   0 8px 40px rgba(46,46,46,0.12);
   --shadow-xl:   0 16px 60px rgba(46,46,46,0.16);
-  --shadow-glow: 0 0 30px rgba(91,107,74,0.15);
+  --shadow-glow: 0 0 30px rgba(15, 76, 129, 0.15);
 
   /* Transitions */
   --transition-fast:   0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1193,6 +1193,87 @@ section {
   border-color: var(--color-olive);
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   TESTIMONIALS SECTION
+   ======================================== */
+.testimonials {
+  background: var(--color-cream);
+  position: relative;
+}
+
+.testimonials .section-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.testimonials .section-subtitle {
+  margin: 0 auto;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.testimonial-card {
+  background: var(--color-off-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  transition: all var(--transition-smooth);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-gold);
+}
+
+.testimonial-stars {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  margin-bottom: var(--space-md);
+}
+
+.testimonial-text {
+  font-size: 0.95rem;
+  color: var(--color-charcoal);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: var(--space-lg);
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--color-warm-beige);
+  padding-top: var(--space-sm);
+}
+
+.author-info h4 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+}
+
+.author-info span {
+  font-size: 0.8rem;
+  color: var(--color-warm-gray);
+}
+
+@media (max-width: 900px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
 }
 
 /* ========================================

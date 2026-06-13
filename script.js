@@ -1,5 +1,5 @@
 /**
- * LiviQue Space — Interactive Scripts
+ * Blue Interiors & Hardware — Interactive Scripts
  * Scroll animations, navigation, portfolio filtering, and form handling
  */
 
@@ -177,14 +177,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create WhatsApp message
     const whatsappMessage = encodeURIComponent(
-      `Hi LiviQue Space! 👋\n\n` +
+      `Hi Blue Interiors & Hardware! 👋\n\n` +
       `*Name:* ${name}\n` +
       `*Phone:* ${phone}\n` +
-      `*Space Type:* ${space}\n` +
+      `*Required Solution:* ${space}\n` +
       `*Message:* ${message}`
     );
 
-    const whatsappUrl = `https://wa.me/917386218844?text=${whatsappMessage}`;
+    const whatsappUrl = `https://wa.me/919492050919?text=${whatsappMessage}`;
 
     // Show success feedback
     const submitBtn = document.getElementById('contact-submit-btn');
@@ -249,8 +249,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const lockContainer = document.querySelector('.lock-container');
 
   // Hardcoded developer credentials
-  const AUTH_ID = 'livique';
-  const AUTH_PASS = 'design2026';
+  const AUTH_ID = 'blueinterio';
+  const AUTH_PASS = 'hardware2026';
 
   if (lockForm) {
     lockForm.addEventListener('submit', (e) => {
@@ -261,9 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (enteredId === AUTH_ID && enteredPass === AUTH_PASS) {
         // Correct credentials
         if (lockRememberCheckbox && lockRememberCheckbox.checked) {
-          localStorage.setItem('livique_authorized', 'true');
+          localStorage.setItem('blueinterio_authorized', 'true');
         } else {
-          sessionStorage.setItem('livique_authorized', 'true');
+          sessionStorage.setItem('blueinterio_authorized', 'true');
         }
 
         // Change layout/state classes
@@ -291,8 +291,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Double check authorization on script load
-  const isAuthorized = localStorage.getItem('livique_authorized') === 'true' ||
-                       sessionStorage.getItem('livique_authorized') === 'true';
+  const isAuthorized = localStorage.getItem('blueinterio_authorized') === 'true' ||
+                       sessionStorage.getItem('blueinterio_authorized') === 'true';
 
   if (isAuthorized) {
     document.documentElement.classList.remove('locked');
